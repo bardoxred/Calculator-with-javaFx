@@ -2,12 +2,14 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
-public class MainController { 
+public class MainController {
     private BigDecimal left;
     private String selectedOperator;
     private boolean start;
@@ -52,15 +54,21 @@ public class MainController {
             selectedOperator = buttonText;
             start = false;
             return;
-
         }
+
         if(buttonText.equals("=")){
             final BigDecimal right = start ? new BigDecimal(textField.getText()) : left;
 
             left = calculate(selectedOperator, left, right);
             textField.setText(left.toString());
             start = false;
+
+            if(right.equals("0")){
+                textField.setText("You cannot divide by ZERO!");
+            }
+
             return;
+
         }
 
 
@@ -75,7 +83,19 @@ public class MainController {
             case "X":
                 return left.multiply(right);
             case "/":
-                return left.divide(right);
+
+                try {
+                    return left.divide(right, 3, RoundingMode.CEILING);
+                }
+                catch (ArithmeticException ae){
+
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("ERROR");
+                    alert.setContentText("You cannot divide by ZERO!");
+                    alert.showAndWait();
+
+                }
+
         }
 
 

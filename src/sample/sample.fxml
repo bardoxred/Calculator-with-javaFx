@@ -83,10 +83,7 @@
                <font>
                   <Font size="21.0" />
                </font></Button>
-            <Button mnemonicParsing="false" onAction="#processNumber" prefHeight="50.0" prefWidth="50.0" style="-fx-opacity: 0.6; -fx-background-color: orange;" text="=">
-               <font>
-                  <Font size="21.0" />
-               </font></Button>
+            <Button mnemonicParsing="false" onAction="#processNumber" prefHeight="50.0" prefWidth="50.0" text="+/-" />
             <Button mnemonicParsing="false" onAction="#processNumber" prefHeight="50.0" prefWidth="50.0" style="-fx-opacity: 0.6;" text="-">
                <font>
                   <Font size="21.0" />
@@ -95,11 +92,15 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="79.0" prefWidth="300.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#processNumber" prefHeight="50.0" prefWidth="245.0" style="-fx-opacity: 0.6; -fx-background-color: red;" text="C">
+            <Button mnemonicParsing="false" onAction="#processNumber" prefHeight="50.0" prefWidth="190.0" style="-fx-opacity: 0.6; -fx-background-color: red;" text="C">
                <font>
                   <Font size="21.0" />
                </font>
             </Button>
+            <Button mnemonicParsing="false" onAction="#processNumber" prefHeight="50.0" prefWidth="50.0" style="-fx-opacity: 0.6; -fx-background-color: orange;" text="=">
+               <font>
+                  <Font size="21.0" />
+               </font></Button>
          </children>
       </HBox>
    </children>
