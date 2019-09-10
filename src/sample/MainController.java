@@ -3,60 +3,84 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
-public class MainController {
+import java.math.BigDecimal;
 
+public class MainController { 
+    private BigDecimal left;
+    private String selectedOperator;
+    private boolean start;
 
     @FXML
-    private Label result;
-    private long number1 = 0;
-    private String operator = "";
-    private boolean start = true;
-    private Model model = new Model();
+
+    private TextField textField;
+
+    public MainController(){
+        this.left = BigDecimal.ZERO;
+        this.selectedOperator = "";
+        this.start = false;
+    }
 
 
     public void processNumber(ActionEvent event) {
 
-        if(start) {
-            result.setText("");
-            start = false;
+        Button button = (Button)event.getSource();
+        String buttonText = button.getText();
+        if(buttonText.equals("C")){
+            if(buttonText.equals("C")){
+                left = BigDecimal.ZERO;
+            }
+            selectedOperator = "";
+            start = true;
+            textField.setText("");
+            return;
         }
-        String value = ((Button)event.getSource()).getText();
-        result.setText(result.getText()+value);
+
+        if(buttonText.matches("[0-9\\.]")){
+            if(!start){
+                start = true;
+                textField.clear();
+
+            }
+            textField.appendText(buttonText);
+            return;
+        }
+        if(buttonText.matches("[-X/+]")){
+
+            left = new BigDecimal(textField.getText());
+            selectedOperator = buttonText;
+            start = false;
+            return;
+
+        }
+        if(buttonText.equals("=")){
+            final BigDecimal right = start ? new BigDecimal(textField.getText()) : left;
+
+            left = calculate(selectedOperator, left, right);
+            textField.setText(left.toString());
+            start = false;
+            return;
+        }
 
 
     }
-    public void processOperators(ActionEvent event) {
+    public static BigDecimal calculate(String operator, BigDecimal left, BigDecimal right){
 
-
-            String value = ((Button)event.getSource()).getText();
-
-
-            if(!value.equals("=")) {
-                if (!operator.isEmpty())
-                    return;
-                else if(operator.equals("."))
-                    value = ((Button)event.getSource()).getText()+operator;
-
-
-                operator = value;
-                number1 = Long.parseLong(result.getText());
-                result.setText("");
-            }
-
-            else
-            {
-                if(operator.isEmpty())
-                    return;
-                long number2 = Long.parseLong(result.getText());
-                double output = model.calculate(number1,number2,operator);
-                result.setText(String.valueOf(output));
-                operator = "";
-                start = true;
-            }
-
+        switch (operator){
+            case "+":
+                return left.add(right);
+            case "-":
+                return left.subtract(right);
+            case "X":
+                return left.multiply(right);
+            case "/":
+                return left.divide(right);
         }
+
+
+        return right;
+    }
 
 }
 
