@@ -55,17 +55,23 @@ public class MainController {
             start = false;
             return;
         }
+        if(buttonText.equals("+/-")){
+
+                left = new BigDecimal((textField.getText()));
+                selectedOperator = buttonText;
+                start = false;
+                return;
+
+
+        }
 
         if(buttonText.equals("=")){
+
             final BigDecimal right = start ? new BigDecimal(textField.getText()) : left;
 
             left = calculate(selectedOperator, left, right);
             textField.setText(left.toString());
             start = false;
-
-            if(right.equals("0")){
-                textField.setText("You cannot divide by ZERO!");
-            }
 
             return;
 
@@ -95,6 +101,9 @@ public class MainController {
                     alert.showAndWait();
 
                 }
+            case "+/-":{
+                return left.negate();
+            }
 
         }
 

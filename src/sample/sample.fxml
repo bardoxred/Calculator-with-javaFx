@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="300.0" spacing="10.0" style="-fx-background-image: url('/sample/Image.png');" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="300.0" spacing="10.0" style="-fx-background-image: url('/sample/image1.png');" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
    <children>
       <StackPane prefHeight="50.0" prefWidth="250.0">
          <children>
@@ -83,7 +83,7 @@
                <font>
                   <Font size="21.0" />
                </font></Button>
-            <Button mnemonicParsing="false" onAction="#processNumber" prefHeight="50.0" prefWidth="50.0" text="+/-" />
+            <Button mnemonicParsing="false" onAction="#processNumber" prefHeight="50.0" prefWidth="50.0" style="-fx-opacity: 0.6;" text="+/-" />
             <Button mnemonicParsing="false" onAction="#processNumber" prefHeight="50.0" prefWidth="50.0" style="-fx-opacity: 0.6;" text="-">
                <font>
                   <Font size="21.0" />
